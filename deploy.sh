@@ -9,6 +9,5 @@ virtualenv env
 ./env/bin/pip install -r ./requirements.txt
 
 ${PIP3} install --editable .
-source ./env/bin/activate
 echo "Use following command to activate virtual environment:"
 echo "source ${VENV}/bin/activate"
