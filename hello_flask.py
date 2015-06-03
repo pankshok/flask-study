@@ -1,18 +1,33 @@
 #! /usr/bin/env python
 
 from flask import Flask
+from flask import render_template
 from flask.ext.script import Manager
 
 app = Flask(__name__)
 manager = Manager(app)
 
+class Templates:
+    index = "index.html"
+
 @app.route("/")
+@app.route("/index")
 def index():
-    return "<h1>Hello <b>World</b>!</h1>"
+    return render_template(Templates.index)
 
 @app.route("/user/<name>")
 def user(name):
-    return "<h1>Hello <b>{0}</b></h1>".format(name)
+    user = {"nickname" : name}
+    posts = [{
+            "author": {"nickname": "John"},
+            "body": "Pshooo! Flask is great!"},
+            {"author": {"nickname": "Susan"},
+            "body": "PShooPshoo!"}]
+    return render_template(Templates.index,
+            title="Home",
+            user=user,
+            posts=posts)
+
 
 @app.route("/user/id/<int:id>")
 def user_id(id):

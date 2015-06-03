@@ -1,0 +1,20 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - weblog</title>
+        {% else %}
+        <title>Welcome to weblog</title>
+        {% endif %}
+    </head>
+    <body>
+        {% if user %}
+        <h1>Hello, {{ user.nickname }}!</h1>
+        {% else %}
+        <h1>Hello, Stranger!</h1>
+        {% endif %}
+
+        {% for post in posts %}
+        <p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p>
+        {% endfor %}
+    </body>
+</html>
